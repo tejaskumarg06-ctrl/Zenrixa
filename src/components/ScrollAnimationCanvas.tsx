@@ -13,15 +13,17 @@ export default function ScrollAnimationCanvas() {
     const context = canvas.getContext("2d");
     if (!context) return;
 
-    // Preload all 360 image frames from both folders
+    // Preload all 360 image frames from both folders.
+    // import.meta.env.BASE_URL resolves to '/' in dev and '/Zenrixa/' on GitHub Pages.
+    const base = import.meta.env.BASE_URL;
     const images: HTMLImageElement[] = [];
     for (let i = 1; i <= totalFrames; i++) {
       const img = new Image();
       if (i <= 120) {
-        img.src = `/ezgif-887de5c5dce9aa4d-jpg/ezgif-frame-${i.toString().padStart(3, '0')}.jpg`;
+        img.src = `${base}ezgif-887de5c5dce9aa4d-jpg/ezgif-frame-${i.toString().padStart(3, '0')}.jpg`;
       } else {
         const idx = i - 120;
-        img.src = `/ezgif-1124c15541a78832-jpg/ezgif-frame-${idx.toString().padStart(3, '0')}.jpg`;
+        img.src = `${base}ezgif-1124c15541a78832-jpg/ezgif-frame-${idx.toString().padStart(3, '0')}.jpg`;
       }
       images.push(img);
     }
